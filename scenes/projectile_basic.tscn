@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://u7d573oifarx"]
+
+[ext_resource type="PackedScene" uid="uid://24141w3q6awv" path="res://scenes/projectile.tscn" id="1_1twg7"]
+[ext_resource type="Script" uid="uid://2t01k5tfd1c6" path="res://scripts/projectiles/projectile_basic.gd" id="2_y0kpq"]
+[ext_resource type="Texture2D" uid="uid://bjq864nnpiwak" path="res://sprites/Towers Weapons/Tower 06/Spritesheets/Tower 06 - Level 01 - Projectile.png" id="3_w82t2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_escvp"]
+atlas = ExtResource("3_w82t2")
+region = Rect2(0, 0, 6, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g1d3h"]
+atlas = ExtResource("3_w82t2")
+region = Rect2(6, 0, 6, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yabmp"]
+atlas = ExtResource("3_w82t2")
+region = Rect2(12, 0, 6, 26)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wk85i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_escvp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g1d3h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yabmp")
+}],
+"loop": 1,
+"name": &"fly",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3nmqy"]
+size = Vector2(6, 26)
+
+[node name="ProjectileBasic" unique_id=1946581329 instance=ExtResource("1_1twg7")]
+script = ExtResource("2_y0kpq")
+
+[node name="AnimatedSprite2D" parent="." index="0" unique_id=961138718]
+sprite_frames = SubResource("SpriteFrames_wk85i")
+animation = &"fly"
+
+[node name="CollisionShape2D" parent="HitArea" index="0"]
+shape = SubResource("RectangleShape2D_3nmqy")

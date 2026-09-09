@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://ca3arbt8s8s6i"]
+
+[ext_resource type="PackedScene" uid="uid://7vph50s7xgh8" path="res://scenes/tower.tscn" id="1_iihrp"]
+[ext_resource type="Script" uid="uid://ck8rdf1e4sgvf" path="res://scripts/towers/tower_basic.gd" id="2_guog3"]
+[ext_resource type="PackedScene" uid="uid://u7d573oifarx" path="res://scenes/projectile_basic.tscn" id="3_bnp34"]
+[ext_resource type="Texture2D" uid="uid://ce6f0rrwghi4x" path="res://sprites/Towers bases/PNGs/torre_1.png" id="3_salem"]
+[ext_resource type="Texture2D" uid="uid://c75kg2bnhkjto" path="res://sprites/Towers Weapons/Tower 06/Spritesheets/Tower 06 - Level 01 - Weapon.png" id="4_guog3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_salem"]
+atlas = ExtResource("4_guog3")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bnp34"]
+atlas = ExtResource("4_guog3")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4r0th"]
+atlas = ExtResource("4_guog3")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vrj7"]
+atlas = ExtResource("4_guog3")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_femda"]
+atlas = ExtResource("4_guog3")
+region = Rect2(256, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khy5u"]
+atlas = ExtResource("4_guog3")
+region = Rect2(320, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3ffhv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_salem")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bnp34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4r0th")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1vrj7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_femda")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khy5u")
+}],
+"loop": 1,
+"name": &"shoot",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7p1mj"]
+
+[node name="TowerBasic" unique_id=760411638 instance=ExtResource("1_iihrp")]
+script = ExtResource("2_guog3")
+damage = 5
+attack_range = 200.0
+attack_speed = 1.0
+cost = 50
+projectile_scene = ExtResource("3_bnp34")
+target_priority = 0
+
+[node name="Base" parent="." index="0" unique_id=470507054]
+position = Vector2(0, 8)
+texture = ExtResource("3_salem")
+
+[node name="Turret" parent="." index="1" unique_id=1811122724]
+sprite_frames = SubResource("SpriteFrames_3ffhv")
+animation = &"shoot"
+
+[node name="CollisionShape2D" parent="EnemyDetectionArea" parent_id_path=PackedInt32Array(759435905) index="0" unique_id=1396275478]
+shape = SubResource("CircleShape2D_7p1mj")
